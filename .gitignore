@@ -1,0 +1,5 @@
+.DS_Store
+**/.env
+**/.DS_Store
+**/node_modules
+db
