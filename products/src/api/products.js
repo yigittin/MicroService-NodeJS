@@ -10,7 +10,7 @@ const UserAuth = require("./middlewares/auth");
 module.exports=(app,channel)=>{
     const service=new ProductService();
     app.post("/product/create",async (req,res,next)=>{
-        const{name,desc,type,unit,price,available,suplier,banne}=req.body;
+        const{name,desc,type,unit,price,available,suplier,banner}=req.body;
         const {data}=await service.CreateProduct({
             name,
             desc,
@@ -61,6 +61,25 @@ module.exports=(app,channel)=>{
         PublishMessage(channel,CUSTOMER_SERVICE,JSON.stringify(data));
 
         res.status(200).json(data.data.product);
+    });
+    app.put("/cart", UserAuth, async (req, res, next) => {
+      const { _id } = req.user;
+  
+      const { data } = await service.GetProductPayload(
+        _id,
+        { productId: req.body._id, qty: req.body.qty },
+        "ADD_TO_CART"
+      );
+  
+      // PublishCustomerEvent(data);
+      // PublishShoppingEvent(data);
+  
+      PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
+      PublishMessage(channel, SHOPPING_SERVICE, JSON.stringify(data));
+  
+      const response = { product: data.data.product, unit: data.data.qty };
+  
+      res.status(200).json(response);
     });
     app.delete("/cart/:id", UserAuth, async (req, res, next) => {
         const { _id } = req.user;
