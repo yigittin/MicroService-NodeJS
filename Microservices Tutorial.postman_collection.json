@@ -309,7 +309,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Olive Oil\",\n    \"desc\":\"great Quality of Oil\",\n    \"type\":\"oils\",\n    \"banner\":\"http://codergogoi.com/youtube/images/oliveoil.jpg\",\n    \"unit\":1,\n    \"price\":400, \n    \"available\":true,\n    \"suplier\":\"Golden seed firming\"\n}",
+							"raw": "{\n    \"name\":\"Olive Oil\",\n    \"desc\":\"great Quality of Oil\",\n    \"type\":\"oils\",\n    \"banner\":\"oliveoil.jpg\",\n    \"unit\":1,\n    \"price\":400, \n    \"available\":true,\n    \"suplier\":\"Golden seed firming\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
